@@ -1,41 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Treino com Vídeo RA</title>
+    <title>Treino Personalizado</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     
     <style>
       #botao-inicio {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 15px 30px;
-        background-color: #333;
-        color: white;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        border: 2px solid white;
-        border-radius: 8px;
-        z-index: 9999; /* Garante que fica em cima de tudo */
-        display: block; /* Começa visível */
+        position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+        padding: 15px 30px; background-color: #333; color: white;
+        font-family: Arial, sans-serif; border: 2px solid white; border-radius: 8px;
+        z-index: 9999;
       }
     </style>
 
     <script>
-      // Função para iniciar o vídeo
       function iniciarVideo() {
         var video = document.querySelector('#video_treino');
         var botao = document.querySelector('#botao-inicio');
-        
-        // Tenta tocar o vídeo
         video.play();
-        
-        // Tenta liberar o som (caso esteja mudo)
         video.muted = false;
-
-        // Esconde o botão após o clique
         botao.style.display = 'none';
       }
     </script>
@@ -43,32 +27,17 @@
   
   <body style="margin: 0; overflow: hidden;">
     
-    <button id="botao-inicio" onclick="iniciarVideo()">
-      INICIAR EXPERIÊNCIA
-    </button>
+    <button id="botao-inicio" onclick="iniciarVideo()">INICIAR EXPERIÊNCIA</button>
 
     <a-scene embedded arjs>
-      
       <a-assets>
-        <video id="video_treino" 
-               src="Corrugado.mp4" 
-               preload="auto" 
-               loop="true" 
-               muted="true"
-               crossorigin="anonymous"
-               playsinline 
-               webkit-playsinline>
-        </video>
+        <video id="video_treino" src="Corrugado.mp4" preload="auto" loop="true" muted="true" crossorigin="anonymous" playsinline webkit-playsinline></video>
       </a-assets>
 
-      <a-marker preset="hiro">
+      <a-marker type="pattern" url="aviso.patt">
         
-        <a-video src="#video_treino" 
-                 position="0 0 0" 
-                 rotation="-90 0 0" 
-                 width="2" height="1.12">
-        </a-video>
-
+        <a-video src="#video_treino" position="0 0 0" rotation="-90 0 0" width="2" height="1.12"></a-video>
+        
       </a-marker>
       
       <a-entity camera></a-entity>
